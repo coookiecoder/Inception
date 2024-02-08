@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    build: ./nginx
+    restart: always
+    volumes:
+      - logs:/var/log/nginx
+      - website:/var/www/html/wordpress
+    ports:
+      - "443:443"
+    networks:
+      - internal
+    depends_on:
+      - wordpress
+
+  wordpress:
+    image: wordpress:stable
+    container_name: wordpress
+    build: ./wordpress
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - logs:/var/log
+      - website:/var/www/html/wordpress
+    networks:
+      - internal
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:stable
+    container_name: mariadb
+    build: ./mariadb
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - internal
+
+networks:
+  internal:
+
+volumes:
+
+  database:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/abareux/data/database
+      o: bind
+
+  website:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rosie/data/website
+      o: bind
+
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rosie/data/logs
+      o: bind
