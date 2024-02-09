@@ -60,12 +60,12 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/rosie/data/website
+      device: /home/abareux/data/website
       o: bind
 
   logs:
     driver: local
     driver_opts:
       type: none
-      device: /home/rosie/data/logs
+      device: /home/abareux/data/logs
       o: bind

@@ -1,4 +1,4 @@
-if [ ! -f "/var/www/html/wordpress/index.php" ]; then
+if [ ! -f "wp-config.php" ]; then
 	wp core download --allow-root
 
 	wp config create --dbname=$MYSQL_BASE --dbhost=$MYSQL_HOST --dbuser=$MYSQL_UNAME --dbpass=$MYSQL_UPASS --dbcharset="utf8" --allow-root
@@ -11,4 +11,4 @@ if [ ! -f "/var/www/html/wordpress/index.php" ]; then
 	wp post create --post_type=post --post_title="Test Post" --post_status=publish --allow-root
 fi
 
-exec php-fpm7.3 -F
+php-fpm8.2 -F
