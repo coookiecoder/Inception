@@ -15,4 +15,3 @@ sed -i "s|skip-networking|# skip-networking|g" /etc/mysql/mariadb.conf.d/50-serv
 sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 mysqld --user=mysql
-echo "UwU"
