@@ -2,10 +2,10 @@ all: addhost
 	mkdir -p /home/abareux/data/database
 	mkdir -p /home/abareux/data/website
 	mkdir -p /home/abareux/data/logs
-	sudo docker-compose -f docker-compose.yml up --build
+	sudo docker-compose -f src/docker-compose.yml up --build
 
 stop:
-	sudo docker-compose -f docker-compose.yml down
+	sudo docker-compose -f src/docker-compose.yml down
 
 clean_data:
 	sudo rm -rf /home/abareux/data/database/*
